@@ -229,10 +229,7 @@ forgit::checkout::branch() {
         "
     branch="$(eval "$cmd" | FZF_DEFAULT_OPTS="$opts" fzf --preview="$preview" | awk '{print $1}')"
     [[ -z "$branch" ]] && return 1
-    # track the remote branch if possible
-    if ! git checkout --track "$branch" 2>/dev/null; then
-        git checkout "$branch"
-    fi
+    git checkout "$branch"
 }
 
 # git checkout-commit selector
